@@ -1,0 +1,61 @@
+<!-- Aqui ocomponente Aura com o nome ProjetoMamaco3 se comunica com um controlador chamado ProjetoMamaco3Controller. -->
+<aura:component controller="ProjetoMamaco3Controller" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId">
+    
+    <!-- Define um atributo do componente chamado leads com o tipo Lead[]. 
+Este atributo será preenchido com dados do controlador. -->    
+    <aura:attribute name="leads" type="Lead[]" />
+    <!-- Define um handler que é acionado quando o componente é inicializado. 
+Ele chama um método no controlador chamado doInit para carregar dados iniciais para o atributo leads. -->    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> 
+    <lightning:card title="Leads Criados e Não Contactados">
+        <!-- Define uma tabela HTML com classes do Salesforce Lightning Design System para estilização. --> 
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead> <!-- Define o cabeçalho da tabela -->
+                <tr class="slds-text-heading_label"> <!-- Define uma linha na tabela com uma classe do Salesforce Lightning Design System para estilização.-->
+                    <th scope="col"> <!-- Define uma célula de cabeçalho da tabela.-->
+                        <!--Define um elemento div com o texto Nome dentro da célula de cabeçalho. A classe slds-truncate e o atributo title definem o comportamento de truncagem e a dica de ferramenta, respectivamente.-->
+                        <div class="slds-truncate" title="Nome">Nome</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Empresa">Empresa</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Telefone">Celular</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="E-mail">E-mail</div>
+                    </th>                
+                    <th scope="col">
+                        <div class="slds-truncate" title="CreatedDate">Data de Criação</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Status">Status</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Bottom"> </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Define uma iteração sobre a lista de leads contida no atributo leads. A variável lead representa cada lead na iteração.-->
+                <aura:iteration items="{!v.leads}" var="lead">
+                    <tr>
+                        <td>{!lead.Name}</td> <!-- Define uma célula de dados da tabela com o nome do lead.-->                    
+                        <td>{!lead.Company}</td>
+                        <td>{!lead.MobilePhone}</td>
+                        <td>{!lead.Email}</td>
+                        <td><ui:outputDate value="{!lead.CreatedDate}" format="dd/MM/yyyy" /></td> 
+                        
+                         <td><lightning:recordEditForm recordId="{!v.recordId}" objectApiName="Lead">                        
+                            <lightning:inputField fieldName="Status"/>                        
+                        </lightning:recordEditForm> </td>                    
+                        
+                        <!-- <force:recordEdit aura:id="edit" recordId="{!v.Lead.recordId}"/> -->
+                        
+                        <td><lightning:button label="Salvar" variant="brand" onclick="{!c.save}" /> </td>                   
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </lightning:card>
+</aura:component>

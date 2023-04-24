@@ -1,0 +1,13 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <!-- Título do formulário-->   
+    <lightning:card title="Qual material está faltando no escritório?">
+        <div class="slds-p-horizontal_small">
+            <!--Criando um registro => Documentação salesforce => recordEditForm => Creating a Record -->        
+            <lightning:recordEditForm aura:id="recordEditForm" objectApiName="Compra__c" onsuccess="{!c.handleSuccess}">
+                <lightning:inputField fieldName="Nome_do_Produto__c" />
+                <lightning:inputField fieldName="Quantidade__c" />            
+                <lightning:button label="Salvar" variant="brand" type="submit" />
+            </lightning:recordEditForm>  
+        </div> 
+    </lightning:card>
+</aura:component>

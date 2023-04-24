@@ -1,0 +1,48 @@
+<!-- controller= controla um Apex chamado "AccountsController".
+O atributo "implements" indica as interfaces que o componente Aura implementa.
+O atributo "access" indica o escopo de acesso do componente. -->
+<aura:component controller="AccountsController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+    <aura:attribute name="accounts" type="List" />
+    <!-- Aqui cria um atributo do tipo "List"chamado "accounts". 
+        Esse atributo será usado para armazenar a lista de contas que será exibida na tabela.-->
+    <aura:handler name="init" value="{!this}" action="{!c.getAccounts}" />
+    <!-- Aqui  define um handler que será acionado quando o componente for iniciado. 
+	Esse handler está configurado para chamar o método "getAccounts" da classe de controle do componente 
+	(definida como "AccountsController"). O método "getAccounts" será responsável 
+	por buscar as contas do Salesforce e atualizar o valor do atributo "accounts" do componente.-->
+    
+    <lightning:card title="Lista de Contas"> <!-- Aqui está criando um componente de card do Lightning, 
+											que é uma caixa retangular com uma borda arredondada e um título.-->
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <!-- Este trecho de código está criando uma tabela em HTML com a classe "slds-table slds-table_bordered slds-table_cell-buffer". 
+            A classe "slds-table" pode ser usada para estilizar a tabela de acordo com a biblioteca de componentes Salesforce Lightning 
+            Design System (SLDS). A classe "slds-table_bordered" adiciona uma borda à tabela e a classe "slds-table_cell-buffer" 
+            adiciona um espaçamento entre as células da tabela. -->
+             <thead>  <!--esse trecho de código está definindo a estrutura e os títulos das colunas da tabela -->
+                <tr class="slds-line-height_reset">
+                    <th class="slds-text-title_caps">Nome</th>
+                    <th class="slds-text-title_caps">Telefone</th>
+                    <th class="slds-text-title_caps">Classificação</th>
+                    <th class="slds-text-title_caps">Valor Anual</th>
+                    <th class="slds-text-title_caps">Data de Criação</th>
+                </tr>
+            </thead>
+             <tbody> <!--A tag HTML <tbody> é usada para definir o corpo da tabela. -->
+                <aura:iteration items="{!v.accounts}" var="account">
+                    <!-- tag aura:iteration para percorrer a lista de contas (v.accounts) e criar uma linha (<tr>) para cada conta. 
+                        A classe "slds-hint-parent" é utilizada para exibir um indicador visual ao passar o mouse sobre a linha. -->
+                    <tr class="slds-hint-parent">
+                        <td>{!account.Name}</td>
+                        <td>{!account.Phone}</td>
+                        <td>{!account.Rating}</td>
+                        <td>{!account.AnnualRevenue}</td>
+                        <td>{!account.formattedCreatedDate}</td>
+                        <!-- Dentro de cada linha, as células da tabela são preenchidas com os dados da conta usando as variáveis definidas 
+                        em "var" no aura:iteration. Cada célula é preenchida com o valor da propriedade correspondente da conta,  -->
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </lightning:card>
+</aura:component>

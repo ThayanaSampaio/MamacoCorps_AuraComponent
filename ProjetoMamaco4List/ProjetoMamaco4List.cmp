@@ -1,0 +1,41 @@
+<aura:component controller="ProjetoMamaco4List" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId">
+    
+    <aura:attribute name="compras" type="Compra__c[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> 
+    <lightning:card title="Lista de Compras para o escritório">
+        
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead> 
+                <tr class="slds-text-heading_label"> 
+                    <th scope="col">                         
+                        <div class="slds-truncate" title="Nome">Nome do Produto</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Quantidade">Quantidade</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="ValorUnitario">Valor Unitário</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="ValorTotal">Valor Total</div>
+                    </th>                
+                    <th scope="col">
+                        <div class="slds-truncate" title="DataCompra">Data de Compra</div>
+                    </th>                    
+                </tr>
+            </thead>
+            
+            <tbody>                
+                <aura:iteration items="{!v.compras}" var="compra">
+                    <tr>
+                        <td>{!compra.Nome_do_Produto__c}</td>                     
+                        <td>{!compra.Quantidade__c}</td>
+                        <td>{!compra.Preco_Unitario__c}</td>
+                        <td>{!compra.Preco_Total__c}</td>
+                        <td><ui:outputDate value="{!compra.Data_da_Compra__c}" format="dd/MM/yyyy" /></td> 
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </lightning:card>
+</aura:component>

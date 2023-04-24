@@ -1,0 +1,38 @@
+<!--Video tutorial https://www.youtube.com/watch?v=fy4gGdlOdgc&t=128s -->
+
+<aura:component controller="ProjetoMamaco1Apex" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+    <!--Esses são os atributos do componente. Eles representam o primeiro nome, sobrenome, empresa, celular e email do Lead.-->    
+    <aura:attribute name="leadFirstName" type="String" />
+    <aura:attribute name="leadLastName" type="String" />
+    <aura:attribute name="leadCompany" type="String" />
+    <aura:attribute name="leadMobilePhone" type="String" />
+    <aura:attribute name="leadEmail" type="String" />
+    <aura:attribute name="objLead" type="Lead" default="{'sObject':'Lead'}" />
+    <!-- A tag "aura:dependency" adiciona suporte à exibição de notificações no componente, permitindo que os usuários recebam feedback imediato sobre 
+as ações que estão realizando -->   
+    <aura:dependency resource="lightning:notificationsLibrary" type="EVENT"/>
+    
+    <!--este código está definindo a aparência e o título do cartão. -->
+    <lightning:card title="Formulário de Criação de Novos Leads">
+        <div class="slds-p-horizontal_small">
+            
+            <!--Esses componentes representam campos de entrada de texto para o nome, sobrenome, empresa, celular e email do Lead. O atributo 'aura:id' é usado para 
+identificar os campos no código JavaScript que controla o componente.-->    
+            <lightning:input type="text" label="Nome" aura:id="leadFirstName" value="{!v.objLead.FirstName}" required="true" messageWhenValueMissing="Por favor, preencha o campo corretamente"/>
+            <lightning:input type="text" label="Sobrenonome" aura:id="leadLastName" value="{!v.objLead.LastName}" required="true"/>
+            <lightning:input type="text" label="Nome da empresa" aura:id="leadCompany" value="{!v.objLead.Company}" required="true"/>
+            <lightning:input type="text" label="Celular" aura:id="leadMobilePhone" value="{!v.objLead.MobilePhone}" required="true"/>
+            <lightning:input type="text" label="Email" aura:id="leadEmail" value="{!v.objLead.Email}" required="true"/>
+            <br/>   
+            
+            <!--Aqui contém um botão Lightning: Button com um rótulo "Criar Lead". Quando o botão é clicado, ele chama a função 'creatMamaco' no controlador 
+(controller) do componente.-->    
+            <div class="slds-grid slds-grid_align-end">
+                <lightning:button class="button" label="Criar Lead" variant="brand" onclick="{!c.creatMamaco}" />
+            </div>
+            
+        </div>
+    </lightning:card>
+    
+</aura:component>
