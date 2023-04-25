@@ -20,8 +20,11 @@
                         <div class="slds-truncate" title="ValorTotal">Valor Total</div>
                     </th>                
                     <th scope="col">
-                        <div class="slds-truncate" title="DataCompra">Data de Compra</div>
-                    </th>                    
+                        <div class="slds-truncate" title="DataPedido">Data do Pedido</div>
+                    </th>
+					<th scope="col">
+                        <div class="slds-truncate" title="CriadoPor">Solicitação de</div>
+                    </th>                     
                 </tr>
             </thead>
             
@@ -32,7 +35,8 @@
                         <td>{!compra.Quantidade__c}</td>
                         <td>{!compra.Preco_Unitario__c}</td>
                         <td>{!compra.Preco_Total__c}</td>
-                        <td><ui:outputDate value="{!compra.Data_da_Compra__c}" format="dd/MM/yyyy" /></td> 
+                        <td><ui:outputDate value="{!compra.CreatedDate}" format="dd/MM/yyyy" /></td>
+                        <td>{!compra.Solicitacao_de__c}</td>
                     </tr>
                 </aura:iteration>
             </tbody>

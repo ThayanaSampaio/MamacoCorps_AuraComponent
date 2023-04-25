@@ -1,12 +1,16 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
     <!-- Título do formulário-->   
     <lightning:card title="Qual material está faltando no escritório?">
+        <!--<h1 style="font-size:18px;text-align:center;color:red">Qual material está faltando no escritório?2</h1>-->
         <div class="slds-p-horizontal_small">
             <!--Criando um registro => Documentação salesforce => recordEditForm => Creating a Record -->        
             <lightning:recordEditForm aura:id="recordEditForm" objectApiName="Compra__c" onsuccess="{!c.handleSuccess}">
-                <lightning:inputField fieldName="Nome_do_Produto__c" />
-                <lightning:inputField fieldName="Quantidade__c" />            
+                <lightning:inputField fieldName="Nome_do_Produto__c" required="true" />
+                <lightning:inputField fieldName="Quantidade__c" required="true" />
+                <lightning:inputField fieldName="Solicitacao_de__c" required="true" />
+                <div class="slds-grid slds-grid_align-end">
                 <lightning:button label="Salvar" variant="brand" type="submit" />
+               </div>
             </lightning:recordEditForm>  
         </div> 
     </lightning:card>

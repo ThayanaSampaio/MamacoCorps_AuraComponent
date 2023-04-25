@@ -29,7 +29,7 @@ identificar os campos no código JavaScript que controla o componente.-->
             <!--Aqui contém um botão Lightning: Button com um rótulo "Criar Lead". Quando o botão é clicado, ele chama a função 'creatMamaco' no controlador 
 (controller) do componente.-->    
             <div class="slds-grid slds-grid_align-end">
-                <lightning:button class="button" label="Criar Lead" variant="brand" onclick="{!c.creatMamaco}" />
+                <lightning:button label="Criar Lead" variant="brand" onclick="{!c.creatMamaco}" />
             </div>
             
         </div>
